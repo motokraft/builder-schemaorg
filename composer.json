@@ -1,0 +1,33 @@
+{
+    "name": "motokraft/builder-schemaorg",
+    "description": "Builder микроразметки JSON-LD",
+    "keywords": [
+        "builder",
+        "json-ld",
+        "microdata",
+        "php"
+    ],
+    "homepage": "https://motokraft.github.io/builder-schemaorg",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Motokraft (Valera Karmanov)",
+            "email": "valeravk230594@mail.ru",
+            "homepage": "https://github.com/motokraft",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "motokraft/object": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Motokraft\\BuilderSchemaOrg\\": ""
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
