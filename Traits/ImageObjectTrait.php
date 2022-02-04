@@ -14,23 +14,7 @@ trait ImageObjectTrait
 {
     function setImage(array $data)
     {
-        $image = new ImageObject;
-
-        if(isset($data['url']))
-        {
-            $image->setUrl($data['url']);
-        }
-
-        if(isset($data['width']))
-        {
-            $image->setWidth($data['width']);
-        }
-
-        if(isset($data['height']))
-        {
-            $image->setHeight($data['height']);
-        }
-
+        $image = new ImageObject($data);
         return $this->setImageObject($image);
     }
 

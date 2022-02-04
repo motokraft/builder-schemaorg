@@ -12,6 +12,7 @@ use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\ContactPoint\PostalAd
 use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\ContactPoint;
 use \Motokraft\BuilderSchemaOrg\CreativeWork\MediaObject\ImageObject;
 use \Motokraft\BuilderSchemaOrg\Intangible\Brand;
+use \Motokraft\BuilderSchemaOrg\Intangible\VirtualLocation;
 
 class Organization extends Thing
 {
@@ -27,6 +28,8 @@ class Organization extends Thing
     protected $foundingLocation;
     protected $sameAs = [];
     protected $contactPoint;
+    protected $legalName;
+    protected $location;
 
     function setName(string $value)
     {
@@ -112,11 +115,6 @@ class Organization extends Thing
 
     function setSameAs(string $value)
     {
-        if(in_array($value, $this->sameAs))
-        {
-            return $this;
-        }
-
         array_push($this->sameAs, $value);
         return $this;
     }
@@ -126,6 +124,20 @@ class Organization extends Thing
         $this->set('contactPoint', $value);
         return $value;
     }
+
+    function setLegalName(string $value)
+    {
+        $this->set('legalName', $value);
+        return $value;
+    }
+
+    function setLocation(Place|PostalAddress|VirtualLocation|string $value)
+    {
+        $this->set('location', $value);
+        return $value;
+    }
+
+    /////////////////////////////////////////////////////////////////
 
     function getName($default = null)
     {

@@ -35,6 +35,7 @@ use \Motokraft\BuilderSchemaOrg\Intangible\Service;
 use \Motokraft\BuilderSchemaOrg\Thing\Place;
 use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\GeoCoordinates;
 use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\OpeningHoursSpecification;
+use \Motokraft\BuilderSchemaOrg\Intangible\VirtualLocation;
 
 class BuilderSchemaOrg
 {
@@ -70,7 +71,8 @@ class BuilderSchemaOrg
         'service' => Service::class,
         'place' => Place::class,
         'geocoordinates' => GeoCoordinates::class,
-        'openinghoursspecification' => OpeningHoursSpecification::class
+        'openinghoursspecification' => OpeningHoursSpecification::class,
+        'virtuallocation' => VirtualLocation::class
     ];
 
     static function getInstance()
