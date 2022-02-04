@@ -11,17 +11,20 @@
 use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\ContactPoint\PostalAddress;
 use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\ContactPoint;
 use \Motokraft\BuilderSchemaOrg\CreativeWork\MediaObject\ImageObject;
+use \Motokraft\BuilderSchemaOrg\Intangible\Brand;
 
 class Organization extends Thing
 {
     protected $name;
     protected $description;
     protected $url;
+    protected $brand;
     protected $logo;
     protected $email;
     protected $address;
     protected $founder;
     protected $foundingDate;
+    protected $foundingLocation;
     protected $sameAs = [];
     protected $contactPoint;
 
@@ -41,6 +44,12 @@ class Organization extends Thing
     {
         $this->set('url', $value);
         return $this;
+    }
+
+    function setBrand(Brand $value)
+    {
+        $this->set('brand', $value);
+        return $value;
     }
 
     function setLogo(array $data)
@@ -93,6 +102,12 @@ class Organization extends Thing
     {
         $this->set('foundingDate', $value);
         return $this;
+    }
+
+    function setFoundingLocation(Place $value)
+    {
+        $this->set('foundingLocation', $value);
+        return $value;
     }
 
     function setSameAs(string $value)

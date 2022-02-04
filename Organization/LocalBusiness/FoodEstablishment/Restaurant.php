@@ -87,7 +87,7 @@ class Restaurant extends Thing
         return $this;
     }
 
-    function setOpeningHoursSpecification(OpeningHoursSpecification $value)
+    function addOpeningHoursSpecification(OpeningHoursSpecification $value)
     {
         $this->openingHoursSpecification->push($value);
         return $value;

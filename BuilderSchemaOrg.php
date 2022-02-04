@@ -32,6 +32,9 @@ use \Motokraft\BuilderSchemaOrg\Intangible\Rating\AggregateRating;
 use \Motokraft\BuilderSchemaOrg\Intangible\Offer;
 use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\PropertyValue;
 use \Motokraft\BuilderSchemaOrg\Intangible\Service;
+use \Motokraft\BuilderSchemaOrg\Thing\Place;
+use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\GeoCoordinates;
+use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\OpeningHoursSpecification;
 
 class BuilderSchemaOrg
 {
@@ -64,7 +67,10 @@ class BuilderSchemaOrg
         'aggregaterating' => AggregateRating::class,
         'offer' => Offer::class,
         'propertyvalue' => PropertyValue::class,
-        'service' => Service::class
+        'service' => Service::class,
+        'place' => Place::class,
+        'geocoordinates' => GeoCoordinates::class,
+        'openinghoursspecification' => OpeningHoursSpecification::class
     ];
 
     static function getInstance()
