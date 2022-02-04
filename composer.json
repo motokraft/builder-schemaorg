@@ -20,7 +20,8 @@
     ],
     "require": {
         "php": ">=7.3",
-        "motokraft/object": "^1.0"
+        "motokraft/object": "^1.0",
+        "motokraft/html-element": "^1.0"
     },
     "autoload": {
         "psr-4": {

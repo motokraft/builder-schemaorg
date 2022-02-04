@@ -14,18 +14,6 @@ use \Motokraft\Object\Collections;
 
 class Thing extends BaseObject
 {
-    private $type;
-
-    function __construct()
-    {
-        $this->type = $this->getShortName();
-    }
-
-    function getType()
-    {
-        return $this->get('type');
-    }
-
     function getReflectionClass()
     {
         return new \ReflectionClass($this);
@@ -49,7 +37,7 @@ class Thing extends BaseObject
             return $result->getArray();
         }
 
-        $result->set('@type', $this->type);
+        $result->set('@type', $this->getShortName());
 
         foreach($data as $name => $value)
         {
@@ -72,10 +60,6 @@ class Thing extends BaseObject
             else if(is_object($value))
             {
                 $result->set($name, $value->getArray());
-            }
-            else if(!empty($value) && $name === 'type')
-            {
-                $result->set('@' . $name, $value);
             }
             else if(!empty($value))
             {
@@ -109,5 +93,19 @@ class Thing extends BaseObject
     function __toString()
     {
         return (string) $this->getHtmlElement();
+    }
+
+    function offsetSet($offset, $value)
+    {
+        $method = 'set' . ucfirst($offset);
+
+        if(method_exists($this, $method))
+        {
+            $this->{$method}($value);
+        }
+        else
+        {
+            parent::offsetSet($offset, $value);
+        }
     }
 }

@@ -23,7 +23,6 @@ class Question extends Thing
 
     function __construct()
     {
-        parent::__construct();
         $this->suggestedAnswer = new Collections;
     }
 

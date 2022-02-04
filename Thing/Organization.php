@@ -43,7 +43,29 @@ class Organization extends Thing
         return $this;
     }
 
-    function setLogo(ImageObject $value)
+    function setLogo(array $data)
+    {
+        $image = new ImageObject;
+
+        if(isset($data['url']))
+        {
+            $image->setUrl($data['url']);
+        }
+
+        if(isset($data['width']))
+        {
+            $image->setWidth($data['width']);
+        }
+
+        if(isset($data['height']))
+        {
+            $image->setHeight($data['height']);
+        }
+
+        return $this->setLogoObject($image);
+    }
+
+    function setLogoObject(ImageObject $value)
     {
         $this->set('logo', $value);
         return $value;

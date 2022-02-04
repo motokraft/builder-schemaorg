@@ -15,9 +15,12 @@ use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\OpeningHoursSpecifica
 use \Motokraft\Object\Collections;
 use \Motokraft\BuilderSchemaOrg\Thing\Thing;
 use \Motokraft\BuilderSchemaOrg\CreativeWork\MediaObject\ImageObject;
+use \Motokraft\BuilderSchemaOrg\Traits\ImageObjectTrait;
 
 class Restaurant extends Thing
 {
+    use ImageObjectTrait;
+
     protected $name;
     protected $image;
     protected $address;
@@ -32,8 +35,6 @@ class Restaurant extends Thing
 
     function __construct()
     {
-        parent::__construct();
-
         $this->openingHoursSpecification = new Collections;
         $this->image = new Collections;
     }
@@ -42,12 +43,6 @@ class Restaurant extends Thing
     {
         $this->set('name', $value);
         return $this;
-    }
-
-    function setImage(ImageObject $value)
-    {
-        $this->image->push($value);
-        return $value;
     }
 
     function setAddress(PostalAddress $value)

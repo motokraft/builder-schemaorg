@@ -13,9 +13,12 @@ use \Motokraft\BuilderSchemaOrg\Thing\Person;
 use \Motokraft\BuilderSchemaOrg\Thing\Organization;
 use \Motokraft\BuilderSchemaOrg\CreativeWork\MediaObject\ImageObject;
 use \Motokraft\Object\Collections;
+use \Motokraft\BuilderSchemaOrg\Traits\ImageObjectTrait;
 
 class NewsArticle extends Thing
 {
+    use ImageObjectTrait;
+
     protected $mainEntityOfPage;
     protected $headline;
     protected $image;
@@ -27,7 +30,6 @@ class NewsArticle extends Thing
 
     function __construct()
     {
-        parent::__construct();
         $this->image = new Collections;
     }
 
@@ -41,12 +43,6 @@ class NewsArticle extends Thing
     {
         $this->set('headline', $value);
         return $this;
-    }
-
-    function setImage(ImageObject $value)
-    {
-        $this->image->push($value);
-        return $value;
     }
 
     function setDescription(string $value)
@@ -87,11 +83,6 @@ class NewsArticle extends Thing
     function getHeadline($default = null)
     {
         return $this->get('headline', $default);
-    }
-
-    function getImage($default = null)
-    {
-        return $this->get('image', $default);
     }
 
     function getDescription($default = null)

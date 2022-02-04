@@ -67,10 +67,32 @@ class Person extends Thing
         return $this;
     }
 
-    function setImage(ImageObject $value)
+    function setImage(array $data)
+    {
+        $image = new ImageObject;
+
+        if(isset($data['url']))
+        {
+            $image->setUrl($data['url']);
+        }
+
+        if(isset($data['width']))
+        {
+            $image->setWidth($data['width']);
+        }
+
+        if(isset($data['height']))
+        {
+            $image->setHeight($data['height']);
+        }
+
+        return $this->setImageObject($image);
+    }
+
+    function setImageObject(ImageObject $value)
     {
         $this->set('image', $value);
-        return $this;
+        return $value;
     }
 
     function setSameAs(string $value)

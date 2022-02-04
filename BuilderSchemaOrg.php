@@ -30,6 +30,8 @@ use \Motokraft\BuilderSchemaOrg\CreativeWork\Article\SocialMediaPosting\BlogPost
 use \Motokraft\BuilderSchemaOrg\Intangible\Brand;
 use \Motokraft\BuilderSchemaOrg\Intangible\Rating\AggregateRating;
 use \Motokraft\BuilderSchemaOrg\Intangible\Offer;
+use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\PropertyValue;
+use \Motokraft\BuilderSchemaOrg\Intangible\Service;
 
 class BuilderSchemaOrg
 {
@@ -60,7 +62,9 @@ class BuilderSchemaOrg
         'product' => Product::class,
         'brand' => Brand::class,
         'aggregaterating' => AggregateRating::class,
-        'offer' => Offer::class
+        'offer' => Offer::class,
+        'propertyvalue' => PropertyValue::class,
+        'service' => Service::class
     ];
 
     static function getInstance()
@@ -73,117 +77,116 @@ class BuilderSchemaOrg
         return self::$instance;
     }
 
-    function getPostalAddress(bool $add = true)
+    /*
+    function getPostalAddress()
     {
-        $class = $this->getClass('postaladdress');
-        return $this->loadClass($class, $add);
+        return $this->getClass('postaladdress');
     }
 
-    function getOrganization(bool $add = true)
+    function getOrganization()
     {
-        $class = $this->getClass('organization');
-        return $this->loadClass($class, $add);
+        return $this->getClass('organization');
     }
 
-    function getRestaurant(bool $add = true)
+    function getRestaurant()
     {
-        $class = $this->getClass('restaurant');
-        return $this->loadClass($class, $add);
+        return $this->getClass('restaurant');
     }
 
-    function getReview(bool $add = true)
+    function getReview()
     {
-        $class = $this->getClass('review');
-        return $this->loadClass($class, $add);
+        return $this->getClass('review');
     }
 
-    function getRating(bool $add = true)
+    function getRating()
     {
-        $class = $this->getClass('rating');
-        return $this->loadClass($class, $add);
+        return $this->getClass('rating');
     }
 
-    function getBreadcrumbList(bool $add = true)
+    function getBreadcrumbList()
     {
-        $class = $this->getClass('breadcrumblist');
-        return $this->loadClass($class, $add);
+        return $this->getClass('breadcrumblist');
     }
 
-    function getContactPoint(bool $add = true)
+    function getContactPoint()
     {
-        $class = $this->getClass('contactpoint');
-        return $this->loadClass($class, $add);
+        return $this->getClass('contactpoint');
     }
 
-    function getPerson(bool $add = true)
+    function getPerson()
     {
-        $class = $this->getClass('person');
-        return $this->loadClass($class, $add);
+        return $this->getClass('person');
     }
 
-    function getNewsArticle(bool $add = true)
+    function getNewsArticle()
     {
-        $class = $this->getClass('newsarticle');
-        return $this->loadClass($class, $add);
+        return $this->getClass('newsarticle');
     }
 
-    function getImageObject(bool $add = false)
+    function getImageObject()
     {
-        $class = $this->getClass('imageobject');
-        return $this->loadClass($class, $add);
+        return $this->getClass('imageobject');
     }
 
-    function getFAQPage(bool $add = true)
+    function getFAQPage()
     {
-        $class = $this->getClass('faqpage');
-        return $this->loadClass($class, $add);
+        return $this->getClass('faqpage');
     }
 
-    function getQuestion(bool $add = false)
+    function getQuestion()
     {
-        $class = $this->getClass('question');
-        return $this->loadClass($class, $add);
+        return $this->getClass('question');
     }
 
-    function getQAPage(bool $add = true)
+    function getQAPage()
     {
-        $class = $this->getClass('qapage');
-        return $this->loadClass($class, $add);
+        return $this->getClass('qapage');
     }
 
-    function getAnswer(bool $add = false)
+    function getAnswer()
     {
-        $class = $this->getClass('answer');
-        return $this->loadClass($class, $add);
+        return $this->getClass('answer');
     }
 
-    function getBlogPosting(bool $add = true)
+    function getBlogPosting()
     {
-        $class = $this->getClass('blogposting');
-        return $this->loadClass($class, $add);
+        return $this->getClass('blogposting');
     }
 
-    function getProduct(bool $add = true)
+    function getProduct_()
     {
-        $class = $this->getClass('product');
-        return $this->loadClass($class, $add);
+        return $this->getClass('product');
     }
 
-    function getBrand(bool $add = false)
+    function getBrand()
     {
-        $class = $this->getClass('brand');
-        return $this->loadClass($class, $add);
+        return $this->getClass('brand');
     }
 
-    function getAggregateRating(bool $add = false)
+    function getAggregateRating()
     {
-        $class = $this->getClass('aggregaterating');
-        return $this->loadClass($class, $add);
+        return $this->getClass('aggregaterating');
     }
 
-    function getOffer(bool $add = false)
+    function getOffer()
     {
-        $class = $this->getClass('offer');
-        return $this->loadClass($class, $add);
+        return $this->getClass('offer');
+    }
+
+    function getPropertyValue()
+    {
+        return $this->getClass('propertyvalue');
+    }
+    */
+
+    function __call($name, $arguments)
+    {
+        if(strpos($name, 'get') === 0)
+        {
+            $class = strtolower(substr($name, 3));
+            return $this->getClass($class, $arguments);
+        }
+
+        throw new \Exception('Method not found!');
     }
 }

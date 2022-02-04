@@ -20,7 +20,6 @@ class FAQPage extends Thing
 
     function __construct()
     {
-        parent::__construct();
         $this->mainEntity = new Collections;
     }
 

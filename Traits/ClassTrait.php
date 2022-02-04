@@ -26,31 +26,14 @@ trait ClassTrait
         return $this;
     }
 
-    function loadClass($class, bool $add)
-    {
-        $name = $class->getShortName();
-
-        if($add && !$this->hasSchema($name))
-        {
-            $this->addSchema($class);
-            return $class;
-        }
-        else if($add && $this->hasSchema($name))
-        {
-            return $this->getSchema($name);
-        }
-        
-        return $class;
-    }
-
-    function getClass(string $name)
+    function getClass(string $name, $arguments)
     {
         if(!$this->hasClass($name))
         {
             throw new \Exception('Class not found!');
         }
 
-        return new self::$classes[$name];
+        return new self::$classes[$name]($arguments);
     }
 
     function hasClass(string $name)

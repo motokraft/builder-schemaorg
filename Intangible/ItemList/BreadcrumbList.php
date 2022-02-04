@@ -19,7 +19,6 @@ class BreadcrumbList extends Thing
 
     function __construct()
     {
-        parent::__construct();
         $this->itemListElement = new Collections;
     }
 
