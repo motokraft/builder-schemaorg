@@ -75,7 +75,8 @@ class NewsArticle extends Thing
         return $value;
     }
 
-    function getMainEntityOfPage($default = null)
+    /*
+    function getMainEntityOfPage_($default = null)
     {
         return $this->get('mainEntityOfPage', $default);
     }
@@ -109,4 +110,5 @@ class NewsArticle extends Thing
     {
         return $this->get('publisher', $default);
     }
+    */
 }

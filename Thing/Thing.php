@@ -108,4 +108,40 @@ class Thing extends BaseObject
             parent::offsetSet($offset, $value);
         }
     }
+
+    function __call($name, $args)
+    {
+        if(strpos($name, 'get') === 0)
+        {
+            // $name = substr($name, 3);
+        }
+
+        echo $name . "\n";
+
+
+        /*
+        $class = new \ReflectionClass($this);
+
+        $set_method = 'set' . ucfirst($name);
+        $get_method = 'get' . ucfirst($name);
+
+        if($class->hasMethod($set_method))
+        {
+            $method = $class->getMethod($set_method);
+            $method->invokeArgs($this, $args);
+        }
+        else if($class->hasMethod($get_method))
+        {
+            $method = $class->getMethod($get_method);
+            $method->invokeArgs($this, $args);
+        }
+        else if($class->hasMethod($name))
+        {
+            $method = $class->getMethod($name);
+            $method->invokeArgs($this, $args);
+        }
+
+        throw new \Exception('Method not found!');
+        */
+    }
 }
