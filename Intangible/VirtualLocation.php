@@ -9,12 +9,15 @@
  */
 
 use \Motokraft\BuilderSchemaOrg\Thing\Thing;
+use \Motokraft\BuilderSchemaOrg\Traits\ImageObjectTrait;
 use \Motokraft\BuilderSchemaOrg\Intangible\Rating\AggregateRating;
 use \Motokraft\BuilderSchemaOrg\CreativeWork\MediaObject\ImageObject;
 use \Motokraft\BuilderSchemaOrg\CreativeWork\Review;
 
 class VirtualLocation extends Thing
 {
+    use ImageObjectTrait;
+
     protected $name;
     protected $description;
     protected $url;
@@ -43,33 +46,5 @@ class VirtualLocation extends Thing
     {
         array_push($this->sameAs, $value);
         return $this;
-    }
-
-    function setImage(array $data)
-    {
-        $image = new ImageObject;
-
-        if(isset($data['url']))
-        {
-            $image->setUrl($data['url']);
-        }
-
-        if(isset($data['width']))
-        {
-            $image->setWidth($data['width']);
-        }
-
-        if(isset($data['height']))
-        {
-            $image->setHeight($data['height']);
-        }
-
-        return $this->setImageObject($image);
-    }
-
-    function setImageObject(ImageObject $value)
-    {
-        $this->set('image', $value);
-        return $value;
     }
 }

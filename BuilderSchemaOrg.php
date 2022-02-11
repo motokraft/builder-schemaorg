@@ -187,6 +187,32 @@ class BuilderSchemaOrg
     }
     */
 
+    function render(HtmlElement $head)
+    {
+        $script = new HtmlElement('script', [
+            'type' => 'application/ld+json'
+        ]);
+
+        if($data = (array) $this->getArray())
+        {
+            $data = (array) array_values($data);
+            $script->html(json_encode($data));
+        }
+
+        $head->appendHtml($script);
+        return $script;
+    }
+
+    function getArray()
+    {
+        $map_item = function ($item)
+        {
+            return $item->getArray();
+        };
+
+        return $this->map($map_item);
+    }
+
     function __call($name, $arguments)
     {
         if(strpos($name, 'get') === 0)

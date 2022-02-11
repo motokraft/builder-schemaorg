@@ -11,9 +11,12 @@
 use \Motokraft\BuilderSchemaOrg\Intangible\StructuredValue\ContactPoint\PostalAddress;
 use \Motokraft\BuilderSchemaOrg\CreativeWork\MediaObject\ImageObject;
 use \Motokraft\Object\Collections;
+use \Motokraft\BuilderSchemaOrg\Traits\ImageObjectTrait;
 
 class Person extends Thing
 {
+    use ImageObjectTrait;
+
     protected $name;
     protected $additionalName;
     protected $address;
@@ -65,34 +68,6 @@ class Person extends Thing
     {
         $this->set('jobTitle', $value);
         return $this;
-    }
-
-    function setImage(array $data)
-    {
-        $image = new ImageObject;
-
-        if(isset($data['url']))
-        {
-            $image->setUrl($data['url']);
-        }
-
-        if(isset($data['width']))
-        {
-            $image->setWidth($data['width']);
-        }
-
-        if(isset($data['height']))
-        {
-            $image->setHeight($data['height']);
-        }
-
-        return $this->setImageObject($image);
-    }
-
-    function setImageObject(ImageObject $value)
-    {
-        $this->set('image', $value);
-        return $value;
     }
 
     function setSameAs(string $value)
